@@ -1,0 +1,14 @@
+.header {
+	display : flex;
+	background : grey;
+	text-align : center;
+	justify-content: center;
+	align-items : center;
+}
+
+.frame {
+	display : grid;
+	grid-column-gap : 1px;
+	grid-template-columns : repeat(8, 1fr);
+	grid-template-rows : repeat(25, 50px);
+}
