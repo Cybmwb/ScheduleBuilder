@@ -1,9 +1,17 @@
 //creates the cells of the table
 function createCells(temp, i, j, hours) {
 	let cell = document.createElement("div");
+	cell.className = "cell";
  	
 	//this function defines what should happen when a cell is clicked
 	let fun = function(){
+		let form = document.getElementById("inputForm");
+		form.style.display = "block";
+		form.addEventListener("click", function(e){
+			if (e.currentTarget === e.target)
+				e.currentTarget.style.display = "none";
+		});	
+
 		let correctChange = function(old, i) {
 			let oldArray = old.split(' ');
 			oldArray[i + 1] = "100px";
@@ -14,16 +22,14 @@ function createCells(temp, i, j, hours) {
 		//CDEP CID
 		//TIME
 		//ROOM
-		
+	
 		//jQuery i + 1th set to 50
 		let jQobj = $("#main");
-		
-		
+	
+	
 		jQobj.css("grid-template-rows", correctChange(jQobj.css("grid-template-rows"), i));
-		console.log(correctChange(jQobj.css("grid-template-rows")));
-		
+	
 		document.getElementById(`${i} ${j-1}`);
-		
 	};
 			
 
@@ -34,7 +40,6 @@ function createCells(temp, i, j, hours) {
 	else {
 		cell.addEventListener("click", fun);
 		cell.id = `${i} ${j-1}`;
-		console.log(cell.id);
 	}
 	
 	temp.appendChild(cell);
