@@ -1,3 +1,7 @@
+div {
+	outline-style: solid;
+}
+
 .header {
 	display : flex;
 	background : grey;
@@ -9,6 +13,7 @@
 .frame {
 	display : grid;
 	grid-column-gap : 1px;
+	grid-row-gap : 1px;
 	grid-template-columns : repeat(8, 1fr);
 	grid-template-rows : repeat(25, 50px);
 }

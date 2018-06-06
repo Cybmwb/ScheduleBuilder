@@ -1,5 +1,25 @@
-function createTable(){
+//creates the cells of the table
+function createCells(temp, i, j) {
+	let cell = document.createElement("div");
+ 
+	let fun = function(){alert();};
+			
+
+	if (j == 0) {
+		cell.className = "header"; 
+		cell.innerHTML = i;
+	}
+	else {
+		cell.addEventListener("click", fun);
+		cell.id = `${i} ${j-1}`;
+		console.log(cell.id);
+	}
 	
+	temp.appendChild(cell);
+}
+
+//creates the header, times and calls createCells
+function createTable(){
 	let temp = document.createElement("div");
 	temp.className = "frame";
 	temp.id = "main";
@@ -18,12 +38,7 @@ function createTable(){
 	
 	for (let i = 0; i < 24; ++i) {
 		for (let j = 0; j < 8; ++j) {
-			let cell = document.createElement("div"); 
-			if (j == 0) {
-				cell.className = "header"; 
-				cell.innerHTML = i;	
-			}
-			temp.appendChild(cell);
+			createCells(temp, i, j);
 		}
 	}
 	
