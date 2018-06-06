@@ -1,8 +1,30 @@
 //creates the cells of the table
-function createCells(temp, i, j) {
+function createCells(temp, i, j, hours) {
 	let cell = document.createElement("div");
- 
-	let fun = function(){alert();};
+ 	
+	//this function defines what should happen when a cell is clicked
+	let fun = function(){
+		let correctChange = function(old, i) {
+			let oldArray = old.split(' ');
+			oldArray[i + 1] = "100px";
+			return oldArray.reduce((accumulator, currentValue) => accumulator += " " + currentValue);
+		};
+		//resize for better reading of 
+		//LEC/REC
+		//CDEP CID
+		//TIME
+		//ROOM
+		
+		//jQuery i + 1th set to 50
+		let jQobj = $("#main");
+		
+		
+		jQobj.css("grid-template-rows", correctChange(jQobj.css("grid-template-rows"), i));
+		console.log(correctChange(jQobj.css("grid-template-rows")));
+		
+		document.getElementById(`${i} ${j-1}`);
+		
+	};
 			
 
 	if (j == 0) {
@@ -19,7 +41,7 @@ function createCells(temp, i, j) {
 }
 
 //creates the header, times and calls createCells
-function createTable(){
+function createTable(hours){
 	let temp = document.createElement("div");
 	temp.className = "frame";
 	temp.id = "main";
@@ -36,9 +58,9 @@ function createTable(){
 	temp.appendChild(time); temp.appendChild(sun); temp.appendChild(mon); temp.appendChild(tue);
 	temp.appendChild(wed); temp.appendChild(thu); temp.appendChild(fri); temp.appendChild(sat);
 	
-	for (let i = 0; i < 24; ++i) {
+	for (let i = 0; i < hours; ++i) {
 		for (let j = 0; j < 8; ++j) {
-			createCells(temp, i, j);
+			createCells(temp, i, j, hours);
 		}
 	}
 	
