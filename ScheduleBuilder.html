@@ -4,7 +4,20 @@
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.2/chai.min.js"></script>
+	<script>
+		//should prompt user to enter the hour range [start, end]
+		//max 24
+		//min 14
+		let MAXSLOTS = 6;
+		let collapsedCellHeight = 90;
+		let expandedCellHeight = 360;
+		let hours = 24;
+		let cellMat = []; for (let i = 0; i < hours; ++i) cellMat[i] = [];
+	</script>
+	<script src="js/classes/Cell.js"></script>
+	<script src="js/classes/Plan.js"></script>
+	<script src="js/main/main.js"></script>
 </head>
 <body>
 	<div class="container-fluid" id="inputForm">
@@ -41,9 +54,6 @@
 	</div>
 </body>
 <script>
-	//should prompt user to enter the hour range
-	let hours = 24;
-	createTable(hours);
-	
+	createTable(hours);	
 </script>
 </html>

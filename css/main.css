@@ -17,8 +17,15 @@
 }
 
 .cell {
-	outline-style: solid;
+	outline-style : solid;
 	outline-color : #474747;
+}
+
+.slot {
+	outline : 1px;
+	outline-style : solid;
+	outline-color : white;
+	
 }
 
 .header {
@@ -39,5 +46,5 @@
 	grid-column-gap : 1px;
 	grid-row-gap : 1px;
 	grid-template-columns : repeat(8, minmax(100px, 1fr));
-	grid-template-rows : 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+	grid-template-rows : 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px 90px;
 }
