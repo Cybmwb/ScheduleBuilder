@@ -16,6 +16,32 @@
     	background-color: rgba(255,255,255,0.8); /* Black w/ opacity */
 }
 
+.plan {
+	height : 60px;
+	width : 100%;
+	position : relative;
+	top : 0%;
+	background : red;
+	
+	
+	
+}
+
+.resizeContainer {
+	background : blue;
+	width : 100%;
+	display : flex;	
+	text-align : center;
+	justify-content: center;
+}
+
+.top {
+	align-items : flex-start;
+}
+.bottom {
+	align-items : flex-end;
+}
+
 .cell {
 	outline-style : solid;
 	outline-color : #474747;
@@ -26,6 +52,11 @@
 	outline-style : solid;
 	outline-color : white;
 	
+}
+
+.indicator {
+	height : 0px;
+	border : none
 }
 
 .header {

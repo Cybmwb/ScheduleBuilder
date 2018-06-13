@@ -31,8 +31,13 @@ function alignPlanListCorrectly(cellObject) {
 
 }
 
-function alignSlotsCorrectly(DOMobject, height) {
-	for (let x of DOMobject.getElementsByTagName("div")) {x.style.height = `${height/MAXSLOTS}px`; console.log(x.style.height);}
+function alignSlotsCorrectly(i, height) {
+	for (let j = 0; j < 7; ++j) {
+		for (let x of document.getElementById(`${i}_${j}`).getElementsByClassName("slot")) 
+		{x.style.height = `${height/MAXSLOTS}px`;}
+		
+		cellMat[i][j]._height = height;
+	} 
 }
 
 //this is not correct functionality at the moment
@@ -40,36 +45,83 @@ function getAvailableSlots(cellObject) {
 	return cellObject.avail; 
 }
 
-function handleSlotClicked(DOMcell, cellObject, x, i) {
-	//ave to use x
-	let mainContainer = $("#main");
+function setUpPlanVisuals(slot) {
+
+}
+
+function colorPlan(slot) {
+	slot.style.outline = "0px";
+	let button = document.createElement("div");
+	button.className = "plan";
+	slot.appendChild(button);
 	
-	displayAndSetUpFormModal();
+	let topResizeContainer = document.createElement("div");
+	topResizeContainer.className = "resizeContainer top";
+	topResizeContainer.style.height = `${button.getBoundingClientRect().height/2}px`;
+	let bottomResizeContainer = document.createElement("div");
+	bottomResizeContainer.className = "resizeContainer bottom";
+	bottomResizeContainer.style.height = `${button.getBoundingClientRect().height/2}px`; 
+	
+	let topResizeIndicator = document.createElement("button");
+	let bottomResizeIndicator = document.createElement("button");
+	topResizeIndicator.className = "indicator";
+	bottomResizeIndicator.className = "indicator";
+	
+	//planButton.className = "plan";
+	//console.log(slot.style.background === ""); 
+	//empty background means not taken and empty string is the indicator
+	//slot.style.background = "red";
+	
+	
+	
+	
+	button.appendChild(topResizeContainer);
+	button.appendChild(bottomResizeContainer);
+	topResizeContainer.appendChild(topResizeIndicator);
+	bottomResizeContainer.appendChild(bottomResizeIndicator);
+	
+	//bottomResizeContainer.removeChild(bottomResizeIndicator);
+}
+
+function addPlan(DOMcell, cellObject, x, i) {
+	//add plan button
+	let slot = DOMcell.getElementsByClassName("slot")[x];
+	
+	
+	
+	if (slot.getElementsByTagName("div").length == 0) {
+		displayAndSetUpFormModal();
+		colorPlan(slot);		
+	}
+	
+		
+}
+
+function handleSlotClicked(DOMcell, cellObject, x, i) {
+	//have to use x
+	let mainContainer = $("#main");
 
 	//going to trade computation for space
 	//the computation we will settle for is O(1) anyway
 	//would not want to store extra variables at this point
 
 	//available slots will determine height of the cell
-	let availableSlots = getAvailableSlots(cellObject);
-	cellObject.avail = cellObject.avail - 1;
+	if (cellObject._height !== 360) {
+		cellObject._height = 360; 
+		expandCalendarVertically(cellObject, mainContainer, i);
+		
+		alignSlotsCorrectly(i, cellObject._height);
 
-	cellObject._height = 360; 
-	//(availableSlots === MAXSLOTS) ? expandedCellHeight :
- 	//(cellObject._height + collapsedCellHeight);
-
-	expandCalendarVertically(cellObject, mainContainer, i);
-
-	alignSlotsCorrectly(DOMcell, cellObject._height);
-
-	//alignPlanListCorrectly(cellObject);
+		//alignPlanListCorrectly(cellObject);
+	}
+	
+	addPlan(DOMcell, cellObject, x, i);
 }
 
 function createSlots(DOMcell, cellObject, i) {
 	for (let x = 0; x < MAXSLOTS; ++x) {
         	let slot = document.createElement("div"); slot.className = "slot";
-
-            slot.id = x;
+        	
 			slot.style.height = `${collapsedCellHeight/MAXSLOTS}px`;
 			slot.addEventListener("click", () => handleSlotClicked(DOMcell, cellObject, x, i));		
 						
